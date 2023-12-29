@@ -1,0 +1,40 @@
+﻿@page "/templatesolutiondelete/{Id}"
+@using E_CODING_FrontBlazor.DTOs;
+
+<PageTitle>Les Template Solution</PageTitle>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="mb-3">
+            <label for="TemplateSolutionTitle" class="form-label">Title :</label>
+            <InputText id="TemplateSolutionTitle"
+                        @bind-Value="templateSolutionVM.TemplateSolutionTitle"
+                        class="form-control"></InputText>
+        </div>
+        <div class="mb-3">
+            <label for="TemplateSolutionName" class="form-label">Name :</label>
+            <InputText id="TemplateSolutionName"
+                        @bind-Value="templateSolutionVM.TemplateSolutionName"
+                        class="form-control"></InputText>
+        </div>
+        <div class="mb-3">
+            <label for="TemplateSolutionDescription" class="form-label">Description :</label>
+            <InputText id="TemplateSolutionDescription"
+                        @bind-Value="templateSolutionVM.TemplateSolutionDescription"
+                        class="form-control"></InputText>
+        </div>
+        <div class="mb-3">
+            <label for="TemplateSolutionVersion" class="form-label">Version :</label>
+            <InputText id="TemplateSolutionVersion"
+                        @bind-Value="templateSolutionVM.TemplateSolutionVersion"
+                        class="form-control"></InputText>
+        </div>
+        <div class="mb-3">
+            <label for="TemplateSolutionVersionNet" class="form-label">VersionNet :</label>
+            <InputText id="TemplateSolutionVersionNet"
+                        @bind-Value="templateSolutionVM.TemplateSolutionVersionNet"
+                        class="form-control"></InputText>
+        </div>
+        <button class="btn btn-danger" type="button" @onclick="Delete_Click">Save</button>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@page "/templatesolutionlist"
+
+
+<PageTitle>Les Template Solution</PageTitle>
+
+@if (solutions == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div>
+        <a href="@("templatesolutioncreate/0")" class="btn btn-danger m-1">Create</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>TemplateSolutionId</th>
+                <th>TemplateProjectId</th>
+                <th>TemplateSolutionName</th>
+                <th>TemplateSolutionDescription</th>
+                <th>TemplateSolutionVersion</th>
+                <th>TemplateSolutionVersionNet</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var templateSolution in solutions)
+            {
+                <tr>
+                    <td>@templateSolution.TemplateSolutionId</td>
+                    <td>@templateSolution.TemplateProjectId</td>
+                    <td>@templateSolution.TemplateSolutionName</td>
+                    <td>@templateSolution.TemplateSolutionDescription</td>
+                    <td>@templateSolution.TemplateSolutionVersion</td>
+                    <td>@templateSolution.TemplateSolutionVersionNet</td>
+                    <td>
+                        <a href="@($"templatesolutioncreate/{@templateSolution.TemplateSolutionId}")" class="btn btn-primary m-1">Edit</a>
+                    </td>
+                    <td>
+                        <a href="@($"templatesolutiondelete/{@templateSolution.TemplateSolutionId}")" class="btn btn-danger m-1">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

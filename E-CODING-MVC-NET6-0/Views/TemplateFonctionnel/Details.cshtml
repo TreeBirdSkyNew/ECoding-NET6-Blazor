@@ -1,0 +1,130 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateFonctionnelVM
+
+<div>
+    <div><h1>Details TemplateFonctionnel</h1></div>
+    <div>@Html.DisplayFor(model => model.TemplateFonctionnelName)</div>
+</div>
+
+<div>
+    <a asp-controller="TemplateFonctionnel" asp-action="Details" asp-route-id="@Model.TemplateFonctionnelId">
+        <input type="button" value="Details" class="btn btn-primary" />
+    </a>
+    <a asp-controller="TemplateTechnique" asp-action="Edit" asp-route-id="@Model.TemplateFonctionnelId">
+        <input type="button" value="Edit" class="btn btn-success" />
+    </a>
+    <a asp-controller="TemplateTechnique" asp-action="Delete" asp-route-id="@Model.TemplateFonctionnelId">
+        <input type="button" value="Delete" class="btn btn-danger" />
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="~/Images/fonctionnel/fonctionnelle2.jpg" />
+            </div>
+            <div class="col-md-4">
+                <strong>@Html.DisplayNameFor(model => model.TemplateFonctionnelId)</strong>
+                <strong>@Html.DisplayNameFor(model => model.TemplateProjectId)</strong>
+                <strong>@Html.DisplayNameFor(model => model.TemplateFonctionnelName)</strong>
+                <strong>@Html.DisplayNameFor(model => model.TemplateFonctionnelEFVersion)</strong>
+             </div>
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.TemplateFonctionnelId)
+                @Html.DisplayFor(model => model.TemplateProjectId)
+                @Html.DisplayFor(model => model.TemplateFonctionnelName)
+                @Html.DisplayFor(model => model.TemplateFonctionnelEFVersion)
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-12">
+        <h2>Liste des TemplateFonctionnelEntity</h2>
+        <input type="button" value="Clients" id="actionStart">
+        <table class="table table-responsive table-striped table-bordered table-hover"
+               id="TableTemplateFonctionnelEntity"
+               cellspacing="0"
+               align="center"
+               width="100%">
+            <tr>
+                <th>Details</th>
+                <th>Edit</th>
+                <th>EntityName</th>
+                <th>EntityDescription</th>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="col-md-12">
+        <h1>Edition EntityDescription</h1>
+        <input type="button" id="updateDescription" value="Update Description" class="btn btn-success" />
+        <textarea id="textareDescription" class="mytextarea">@Model.TemplateFonctionnelDescription</textarea>
+    </div>
+
+    <div class="col-md-12">
+        <h1>Edition EntityContent</h1>
+        <input type="button" id="updateTitle" value="Update Title" class="btn btn-primary" />
+        <textarea id="textareTitle" class="mytextarea">@Model.TemplateFonctionnelContent</textarea>
+    </div>
+
+</div>
+
+
+
+@section scripts {
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var detailsBtn = '<input type="button" value="Details" class="btn btn-primary" />';
+        var editBtn = '<input type="button" value="Edit" class="btn btn-success" />';
+
+
+        var TemplateFonctionnelId = @Model.TemplateFonctionnelId.ToString();
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "@Url.Action("TemplateFonctionnelEntities")",
+            data: { "id": TemplateFonctionnelId },
+            success: function (result) {
+                var client = '';
+                for (var i = 0; i < result.length; i++) {
+                    client += '<tr>';
+                    client += '<td><a href="TemplateFonctionnelEntity?id=' + result[i].TemplateFonctionnelEntityId + '">' + detailsBtn + '</a></td>';
+                    client += '<td><a href="EditTemplateFonctionnelEntity?id=' + result[i].TemplateFonctionnelEntityId + '">' + editBtn + '</a></td>';
+                    client += '<td>' + result[i].TemplateFonctionnelEntityName + '</td>';
+                    client += '<td>' + result[i].TemplateFonctionnelEntityDescription + '</td>';
+                    client += '</tr>';
+                }
+                $('#TableTemplateFonctionnelEntity').append(client);
+            }
+
+        });
+});
+
+    </script>
+
+
+
+
+    <script type="text/javascript">
+
+    tinymce.init({
+        selector: '.mytextarea'
+    });
+
+    $('#textareTitle').html('@Model.TemplateFonctionnelContent');
+    $('#textareDescription').html('@Model.TemplateFonctionnelDescription');
+
+    </script>
+
+
+}
+
+
+
+

@@ -1,0 +1,80 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateSolutionVM
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        <h4>@Model.TemplateSolutionTitle</h4>
+                    </div>
+                    <img src="~/Images/software/soft3.jpg" />
+                </div>
+                <div class="col-md-3" style="margin-top: 50px;">
+                    <div>
+                        <strong>@Html.DisplayNameFor(model => model.TemplateSolutionId)</strong>
+                    </div>
+                    <div>
+                        <strong>@Html.DisplayNameFor(model => model.TemplateSolutionName)</strong>
+                    </div>
+                    <div>
+                        <strong>@Html.DisplayNameFor(model => model.TemplateSolutionVersion)</strong>
+                    </div>
+                    <div>
+                        <strong>@Html.DisplayNameFor(model => model.TemplateSolutionVersionNet)</strong>
+                    </div>
+                </div>
+                <div class="col-md-5" style="margin-top: 50px;">
+
+                    <div>
+                        @Html.DisplayFor(model => model.TemplateProjectId)
+                    </div>
+                    <div>
+                        @Html.DisplayFor(model => model.TemplateSolutionName)
+                    </div>
+                    <div>
+                        @Html.DisplayFor(model => model.TemplateSolutionVersion)
+                    </div>
+                    <div>
+                        @Html.DisplayFor(model => model.TemplateSolutionVersionNet)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr /><hr />
+
+        <div class="col-md-12">
+            <label asp-for="TemplateSolutionDescription" class="control-label"></label>
+            <textarea asp-for="TemplateSolutionDescription" id="textareDescription" class="mytextarea"></textarea>
+        </div>
+
+        <div class="col-md-12">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+    </div>
+
+</form>
+
+@section scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            tinymce.init({
+                selector: '.mytextarea'
+            });
+
+            $('#textareDescription').html('@Model.TemplateSolutionDescription');
+        });
+
+    </script>
+
+}

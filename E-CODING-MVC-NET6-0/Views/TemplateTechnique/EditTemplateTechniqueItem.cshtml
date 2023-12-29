@@ -1,0 +1,106 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateTechniqueItemVM
+
+<h4>TemplateTechniqueItemVM</h4>
+<hr />
+<form asp-action="EditTemplateTechniqueItem">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/Images/software/soft3.jpg" />
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <strong><label asp-for="TemplateTechniqueItemId" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateTechniqueId" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateTechniqueItemTitle" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateTechniqueItemName" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateTechniqueItemVersion" class="control-label"></label></strong>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <input asp-for="TemplateTechniqueItemId" class="form-control" />
+                        <span asp-validation-for="TemplateTechniqueItemId" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateTechniqueId" class="form-control" />
+                        <span asp-validation-for="TemplateTechniqueId" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateTechniqueItemTitle" class="form-control" />
+                        <span asp-validation-for="TemplateTechniqueItemTitle" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateTechniqueItemName" class="form-control" />
+                        <span asp-validation-for="TemplateTechniqueItemName" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateTechniqueItemVersion" class="form-control" />
+                        <span asp-validation-for="TemplateTechniqueItemVersion" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <label asp-for="TemplateTechniqueItemName" class="control-label"></label>
+            <textarea asp-for="TemplateTechniqueItemDescription" id="textareContent" class="mytextarea" rows="30">
+                @Model.TemplateTechniqueItemDescription
+            </textarea>
+            <span asp-validation-for="TemplateTechniqueItemDescription" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <label asp-for="TemplateTechniqueInitialFile" class="control-label"></label>
+            <textarea asp-for="TemplateTechniqueInitialFile" id="textareContent" class="mytextarea" rows="30">
+                @Model.TemplateTechniqueInitialFile
+            </textarea>
+            <span asp-validation-for="TemplateTechniqueInitialFile" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <label asp-for="TemplateTechniqueFinalContent" class="control-label"></label>
+            <textarea asp-for="TemplateTechniqueFinalContent" id="textareDescription" class="mytextarea" rows="30">
+                @Model.TemplateTechniqueFinalContent
+            </textarea>
+            <span asp-validation-for="TemplateTechniqueFinalContent" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+    </div>
+
+</form>
+
+@section scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+
+                $(document).ready(function () {
+
+                        tinymce.init({
+                            selector: '.mytextarea'
+                        });
+
+                });
+
+    </script>
+
+}
+
+

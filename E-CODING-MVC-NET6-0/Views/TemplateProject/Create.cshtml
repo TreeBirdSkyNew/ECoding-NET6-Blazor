@@ -1,0 +1,73 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateProjectVM
+
+<div>
+    <a asp-controller="TemplateTechnique" asp-action="Index">
+        <input type="button" value="List TemplateTechnique" class="btn btn-primary" />
+    </a>
+</div>
+
+<form asp-action="CreateTemplateProject">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            <div>
+                <img src="~/Images/software/soft2.jpg" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div><strong><label asp-for="TemplateProjectName" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateProjectTitle" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateProjectDescription" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateProjectVersion" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateProjectVersionNet " class="control-label"></label></strong></div>
+        </div>
+
+        <div class="col-md-4">
+            <div>
+                <input asp-for="TemplateProjectName" class="form-control" />
+                <span asp-validation-for="TemplateProjectName" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateProjectVersion" class="form-control" />
+                <span asp-validation-for="TemplateProjectVersion" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateProjectVersionNet" class="form-control" />
+                <span asp-validation-for="TemplateProjectVersionNet" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <textarea asp-for="TemplateProjectTitle" id="templateTechniqueTitle" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateProjectTitle" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <textarea asp-for="TemplateProjectDescription" id="TemplateProjectDescription" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateProjectDescription" class="text-danger"></span>
+        </div>
+
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        tinymce.init({
+            selector: '.mytextarea'
+        });
+
+        $('#templateTechniqueTitle').html('@Model.TemplateProjectTitle');
+        $('#TemplateTechniqueDescription').html('@Model.TemplateProjectDescription');
+    });
+
+    </script>
+}

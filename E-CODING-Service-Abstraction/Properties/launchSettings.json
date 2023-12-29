@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "E-CODING-Service-Abstraction": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:1083;http://localhost:1084"
+    }
+  }
+}

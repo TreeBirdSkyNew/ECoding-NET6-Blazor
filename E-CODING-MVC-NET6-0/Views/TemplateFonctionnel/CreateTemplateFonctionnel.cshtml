@@ -1,0 +1,86 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateFonctionnelVM
+
+    
+
+
+<form asp-action="CreateTemplateFonctionnel">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a asp-controller="TemplateFonctionnel" asp-action="CreateTemplateFonctionnelEntity">
+                <input type="button" value="Create TemplateFonctionnel" class="btn btn-primary" />
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <img src="~/Images/fonctionnel/fonctionnelle4.jpg" />
+        </div>
+        <div class="col-md-4">
+            <div>
+                <strong><label asp-for="TemplateFonctionnelId" class="control-label"></label></strong>
+            </div>
+            <div>
+                <strong><label asp-for="TemplateProjectId" class="control-label"></label></strong>
+            </div>
+            <div>
+                <strong><label asp-for="TemplateFonctionnelName" class="control-label"></label></strong>
+            </div>
+            <div>
+                <strong><label asp-for="TemplateFonctionnelEFVersion" class="control-label"></label></strong>
+            </div>
+            <div>
+                <strong><label asp-for="TemplateFonctionnelTitle" class="control-label"></label></strong>
+            </div>
+            <div>
+                <strong><label asp-for="TemplateFonctionnelDescription" class="control-label"></label></strong>
+            </div>
+            <div>
+                <strong><label asp-for="TemplateFonctionnelContent" class="control-label"></label></strong>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div>
+                <input asp-for="TemplateFonctionnelId" class="form-control" />
+                <span asp-validation-for="TemplateFonctionnelId" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateProjectId" class="form-control" />
+                <span asp-validation-for="TemplateProjectId" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateFonctionnelName" class="form-control" />
+                <span asp-validation-for="TemplateFonctionnelName" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateFonctionnelEFVersion" class="form-control" />
+                <span asp-validation-for="TemplateFonctionnelEFVersion" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateFonctionnelTitle" class="form-control" />
+                <span asp-validation-for="TemplateFonctionnelTitle" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateFonctionnelDescription" class="form-control" />
+                <span asp-validation-for="TemplateFonctionnelDescription" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateFonctionnelContent" class="form-control" />
+                <span asp-validation-for="TemplateFonctionnelContent" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+
+    </div>
+
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

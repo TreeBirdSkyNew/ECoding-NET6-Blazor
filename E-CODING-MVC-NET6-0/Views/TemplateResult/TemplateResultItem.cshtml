@@ -1,0 +1,62 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateResultItemVM
+
+<h4>TemplateResulItemVM</h4>
+
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/Images/Document/Office.jpg" />
+        </div>
+        <div class="col-md-4">
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateResultItemId)</strong></div>
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateResultId)</strong></div>
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateTechniqueId)</strong></div>
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateProjectId)</strong></div>
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateResultItemName)</strong></div>
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateResultItemVersion)</strong></div>
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateResultItemVersionNET)</strong></div>
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateResultItemTitle)</strong></div>
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateResultItemDescription)</strong></div>
+        </div>
+        <div class="col-md-4">
+            <div>@Html.DisplayFor(model => model.TemplateResultItemId)</div>
+            <div>@Html.DisplayFor(model => model.TemplateResultId)</div>
+            <div>@Html.DisplayFor(model => model.TemplateTechniqueId)</div>
+            <div>@Html.DisplayFor(model => model.TemplateProjectId)</div>
+            <div>@Html.DisplayFor(model => model.TemplateResultItemName)</div>
+            <div>@Html.DisplayFor(model => model.TemplateResultItemVersion)</div>
+            <div>@Html.DisplayFor(model => model.TemplateResultItemVersionNET)</div>
+            <div>@Html.DisplayFor(model => model.TemplateResultItemTitle)</div>
+            <div>@Html.DisplayFor(model => model.TemplateResultItemDescription)</div>
+        </div>
+        <div class="col-md-12">
+            <h2>TemplateResultTitle</h2>
+            <input type="button" id="updateTitle" value="Update Title" class="btn btn-primary" />
+            <textarea id="textareTitle" class="mytextarea">@Model.TemplateResultItemTitle</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <h2>TemplateResultDescription</h2>
+            <input type="button" id="updateDescription" value="Update Title" class="btn btn-success" />
+            <textarea id="textareDescription" class="mytextarea">@Model.TemplateResultItemDescription</textarea>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+            tinymce.init({
+                selector: '.mytextarea'
+            });
+
+        $('#textareTitle').html('@Model.TemplateResultItemTitle');
+        $('#textareDescription').html('@Model.TemplateResultItemDescription');
+    });
+
+    </script>
+
+}

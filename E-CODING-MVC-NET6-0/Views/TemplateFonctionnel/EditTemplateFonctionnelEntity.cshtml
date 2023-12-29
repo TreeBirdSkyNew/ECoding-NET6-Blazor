@@ -1,0 +1,73 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateFonctionnelEntityVM
+
+
+<form asp-action="EditTemplateFonctionnelEntity">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/Images/fonctionnel/fonctionnelle2.jpg" />
+        </div>
+
+        <div class="col-md-4">
+            <strong><label asp-for="TemplateFonctionnelEntityId" class="control-label"></label></strong>
+            <strong><label asp-for="TemplateFonctionnelId" class="control-label"></label></strong>
+            <strong><label asp-for="TemplateFonctionnelEntityName" class="control-label"></label></strong>
+            <strong><label asp-for="TemplateFonctionnelEntityTitle" class="control-label"></label></strong>
+            <strong><label asp-for="TemplateFonctionnelEntityContent" class="control-label"></label></strong>
+            <strong><label asp-for="TemplateFonctionnelEntityVersionEF" class="control-label"></label></strong>
+            <strong><label asp-for="TemplateFonctionnelEntityVersionNET" class="control-label"></label></strong>
+        </div>
+
+        <div class="col-md-4">
+            <input asp-for="TemplateFonctionnelEntityId" class="form-control" />
+            <span asp-validation-for="TemplateFonctionnelEntityId" class="text-danger"></span>
+            <input asp-for="TemplateFonctionnelId" class="form-control" />
+            <span asp-validation-for="TemplateFonctionnelId" class="text-danger"></span>
+             <input asp-for="TemplateFonctionnelEntityName" class="form-control" />
+            <span asp-validation-for="TemplateFonctionnelEntityName" class="text-danger"></span>
+            <input asp-for="TemplateFonctionnelEntityTitle" class="form-control" />
+            <span asp-validation-for="TemplateFonctionnelEntityTitle" class="text-danger"></span>
+            <input asp-for="TemplateFonctionnelEntityContent" class="form-control" />
+            <span asp-validation-for="TemplateFonctionnelEntityContent" class="text-danger"></span>
+            <input asp-for="TemplateFonctionnelEntityVersionEF" class="form-control" />
+            <span asp-validation-for="TemplateFonctionnelEntityVersionEF" class="text-danger"></span>
+            <input asp-for="TemplateFonctionnelEntityVersionNET" class="form-control" />
+            <span asp-validation-for="TemplateFonctionnelEntityVersionNET" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <strong><label asp-for="TemplateFonctionnelEntityDescription" class="control-label"></label></strong>
+            <textarea asp-for="TemplateFonctionnelEntityDescription" id="templateFonctionnelEntityDescription" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateFonctionnelEntityDescription" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <strong><label asp-for="TemplateFonctionnelEntityContent" class="control-label"></label></strong>
+            <textarea asp-for="TemplateFonctionnelEntityContent" id="templateFonctionnelEntityContent" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateFonctionnelEntityContent" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+
+                tinymce.init({
+                    selector: '.mytextarea'
+                });
+
+            $('#templateFonctionnelEntityDescription').html('@Model.TemplateFonctionnelEntityDescription');
+            $('#templateFonctionnelEntityContent').html('@Model.TemplateFonctionnelEntityContent');
+        });
+
+</script>
+}

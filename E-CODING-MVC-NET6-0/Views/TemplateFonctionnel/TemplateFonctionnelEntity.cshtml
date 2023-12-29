@@ -1,0 +1,106 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateFonctionnelEntityVM
+
+<h4>TemplateFonctionnelEntityVM</h4>
+
+<div class="row">
+    <div class="col-md-4">
+        <img src="~/Images/fonctionnel/fonctionnelle2.jpg" />
+    </div>
+    <div class="col-md-4">
+        <div><strong>@Html.DisplayNameFor(model => model.TemplateFonctionnelEntityId)</strong></div>
+        <div><strong>@Html.DisplayNameFor(model => model.TemplateFonctionnelId)</strong></div>
+        <div><strong>@Html.DisplayNameFor(model => model.TemplateFonctionnelEntityName)</strong></div>
+        <div><strong>@Html.DisplayNameFor(model => model.TemplateFonctionnelEntityVersionEF)</strong></div>
+        <div><strong>@Html.DisplayNameFor(model => model.TemplateFonctionnelEntityVersionNET)</strong></div>
+    </div>
+    <div class="col-md-4">
+        <div>@Html.DisplayFor(model => model.TemplateFonctionnelEntityId)</div>
+        <div>@Html.DisplayFor(model => model.TemplateFonctionnelId)</div>
+         <div>@Html.DisplayFor(model => model.TemplateFonctionnelEntityName)</div>
+        <div>@Html.DisplayFor(model => model.TemplateFonctionnelEntityVersionEF)</div>
+        <div>@Html.DisplayFor(model => model.TemplateFonctionnelEntityVersionNET)</div>
+    </div>
+    <div class="col-md-12">
+        <h2>Liste des TemplateFonctionnelProperties</h2>
+        <table class="table table-responsive table-striped table-bordered table-hover"
+               id="TableTemplateFonctionnelProperties"
+               cellspacing="0"
+               align="center"
+               width="100%">
+            <tr>
+                <th>TemplateFonctionnelPropertyId</th>
+                <th>TemplateFonctionnelEntityId</th>
+                <th>TemplateFonctionnelId</th>
+                <th>TemplateFonctionnelPropertyName</th>
+                <th>TemplateFonctionnelPropertyTitle</th>
+                <th>TemplateFonctionnelPropertyDescription</th>
+                <th>TemplateFonctionnelPropertyContent</th>
+                <th>TemplateFonctionnelPropertyVersionEF</th>
+                <th>TemplateFonctionnelPropertyVersionNET</th>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="col-md-12">
+        <h2>TemplateResultDescription</h2>
+        <input type="button" id="updateDescription" value="Update Title" class="btn btn-success" />
+        <textarea id="textareDescription" class="mytextarea">@Model.TemplateFonctionnelEntityDescription</textarea>
+    </div>
+
+    <div class="col-md-12">
+        <h2>TemplateResultContent</h2>
+        <input type="button" id="updateTitle" value="Update Content" class="btn btn-primary" />
+        <textarea id="textareTitle" class="mytextarea">@Model.TemplateFonctionnelEntityContent</textarea>
+    </div>
+
+</div>
+
+
+
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var TemplateFonctionnelEntityId = @Model.TemplateFonctionnelEntityId.ToString();
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "@Url.Action("TemplateFonctionnelProperties")",
+                data: { "id": TemplateFonctionnelEntityId },
+                success: function (result) {
+                    var client = '';
+                    for (var i = 0; i < result.length; i++) {
+                        client += '<tr>';
+                        client += '<td>' + result[i].TemplateFonctionnelPropertyId + '</td>';
+                        client += '<td>' + result[i].TemplateFonctionnelEntityId + '</td>';
+                        client += '<td>' + result[i].TemplateFonctionnelId + '</td>';
+                        client += '<td>' + result[i].TemplateFonctionnelPropertyName + '</td>';
+                        client += '<td>' + result[i].TemplateFonctionnelPropertyTitle + '</td>';
+                        client += '<td>' + result[i].TemplateFonctionnelPropertyDescription + '</td>';
+                        client += '<td>' + result[i].TemplateFonctionnelPropertyContent + '</td>';
+                        client += '<td>' + result[i].TemplateFonctionnelPropertyVersionEF + '</td>';
+                        client += '<td>' + result[i].TemplateFonctionnelPropertyVersionNET + '</td>';
+                        client += '</tr>';
+                    }
+                    $('#TableTemplateFonctionnelProperties').append(client);
+                }
+            });
+
+            tinymce.init({
+                selector: '.mytextarea'
+            });
+
+            $('#textareTitle').html('@Model.TemplateFonctionnelEntityContent');
+            $('#textareDescription').html('@Model.TemplateFonctionnelEntityDescription');
+
+
+        });
+
+    </script>
+
+}

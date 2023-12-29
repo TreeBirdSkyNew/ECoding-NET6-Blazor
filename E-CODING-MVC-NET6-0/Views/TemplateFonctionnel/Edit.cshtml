@@ -1,0 +1,67 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateFonctionnelVM
+
+<h4>TemplateFonctionnelVM</h4>
+<hr />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+
+        <div class="col-md-4">
+            <img src="~/Images/fonctionnel/fonctionnelle2.jpg" />
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="TemplateFonctionnelId" class="control-label"></label>
+            <label asp-for="TemplateProjectId" class="control-label"></label>
+            <label asp-for="TemplateFonctionnelName" class="control-label"></label>
+            <label asp-for="TemplateFonctionnelEFVersion" class="control-label"></label>
+            <label asp-for="TemplateFonctionnelTitle" class="control-label"></label>
+        </div>
+
+        <div class="col-md-4">
+            <input asp-for="TemplateFonctionnelId" class="form-control" />
+            <span asp-validation-for="TemplateFonctionnelId" class="text-danger"></span>
+            <input asp-for="TemplateProjectId" class="form-control" />
+            <span asp-validation-for="TemplateProjectId" class="text-danger"></span>
+            <input asp-for="TemplateFonctionnelName" class="form-control" />
+            <span asp-validation-for="TemplateFonctionnelName" class="text-danger"></span>
+            <input asp-for="TemplateFonctionnelEFVersion" class="form-control" />
+            <span asp-validation-for="TemplateFonctionnelEFVersion" class="text-danger"></span>
+             <input asp-for="TemplateFonctionnelTitle" class="form-control" />
+            <span asp-validation-for="TemplateFonctionnelTitle" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <textarea asp-for="TemplateFonctionnelDescription" id="templateFonctionnelDescription" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateFonctionnelDescription" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <textarea asp-for="TemplateFonctionnelContent" id="templateFonctionnelContent" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateFonctionnelContent" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+
+                tinymce.init({
+                    selector: '.mytextarea'
+                });
+
+            $('#templateFonctionnelContent').html('@Model.TemplateFonctionnelContent');
+            $('#templateFonctionnelContent').html('@Model.TemplateFonctionnelContent');
+        });
+
+</script>
+}

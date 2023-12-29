@@ -1,0 +1,141 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateTechniqueVM
+
+<div>
+    <a asp-controller="TemplateTechnique" asp-action="CreateTechniqueItem" asp-route-id="@Model.TemplateTechniqueId">
+        <input type="button" value="Create Item" class="btn btn-primary" />
+    </a>
+</div>
+
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div>
+                        <strong><label asp-for="TemplateTechniqueId" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateProjectId" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateTechniqueName" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateTechniqueVersion" class="control-label"></label></strong>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <input asp-for="TemplateTechniqueId" class="form-control" />
+                        <span asp-validation-for="TemplateTechniqueId" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateProjectId" class="form-control" />
+                        <span asp-validation-for="TemplateProjectId" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateTechniqueName" class="form-control" />
+                        <span asp-validation-for="TemplateTechniqueName" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateTechniqueVersion" class="form-control" />
+                        <span asp-validation-for="TemplateTechniqueVersion" class="text-danger"></span>
+                    </div>
+
+
+                </div>
+                <div class="col-md-4">
+                    <img src="~/Images/software/soft3.jpg" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Liste des TemplateTechnique</h2>
+                    <table class="table table-responsive table-striped table-bordered table-hover"
+                           id="TableTechniqueId"
+                           cellspacing="0"
+                           align="center"
+                           width="100%">
+                        <tr>
+                            <th>Name</th>
+                            <th>Title</th>
+                            <th>Edit</th>
+                            <th>Details</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <label asp-for="TemplateTechniqueTitle" class="control-label"></label>
+            <textarea asp-for="TemplateTechniqueTitle" id="textareTitle" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateTechniqueTitle" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <label asp-for="TemplateTechniqueDescription" class="control-label"></label>
+            <textarea asp-for="TemplateTechniqueDescription" id="textareDescription" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateTechniqueDescription" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+    </div>
+
+</form>
+
+
+
+@section scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            tinymce.init({
+                selector: '.mytextarea'
+            });
+
+            var details = '<input type="button" value="Details" class="btn btn-primary" />';
+            var edit = '<input type="button" value="Edit" class="btn btn-success" />';
+
+            var TemplateTechniqueId = @Model.TemplateTechniqueId.ToString();
+            alert(TemplateTechniqueId);
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "@Url.Action("TechniqueAllItems")",
+                data: { "id": TemplateTechniqueId },
+                success: function (result) {
+                    alert('TemplateTechniqueId');
+                    var client = '';
+                    for (var i = 0; i < result.length; i++) {
+                        client += '<tr>';
+                        client += '<td>' + result[i].TemplateTechniqueItemName + '</td>';
+                        client += '<td>' + result[i].TemplateTechniqueItemTitle + '</td>';
+                        client += '<td><a asp-controller="TemplateTechnique" asp-action="EditTechniqueItem" asp-route-id=' + result[i].TemplateTechniqueItemId + '>' + edit + '</a></td>';
+                        client += '<td><a asp-controller="TemplateTechnique" asp-action="Details" asp-route-id=' + result[i].TemplateTechniqueItemId + '>' + details + '</a></td>';
+                        client += '</tr>';
+                    }
+                    $('#TableTechniqueId').append(client);
+                }
+            });
+        });
+
+    </script>
+
+}
+
+
+

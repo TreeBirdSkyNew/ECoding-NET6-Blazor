@@ -1,0 +1,160 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateResultVM
+
+
+
+<div>
+    <div><h1>Details TemplateResult</h1></div>
+    <div>@Html.DisplayFor(model => model.TemplateResultName)</div>
+</div>
+
+<div>
+    <a asp-controller="TemplateResult" asp-action="CreateTemplateResultItem" asp-route-id="@Model.TemplateResultId">
+        <input type="button" value="Create TemplateResultItem" class="btn btn-primary" />
+    </a>
+    <a asp-controller="TemplateResult" asp-action="Details" asp-route-id="@Model.TemplateResultId">
+        <input type="button" value="Details" class="btn btn-primary" />
+    </a>
+    <a asp-controller="TemplateResult" asp-action="Edit" asp-route-id="@Model.TemplateResultId">
+        <input type="button" value="Edit" class="btn btn-success" />
+    </a>
+    <a asp-controller="TemplateResult" asp-action="Delete" asp-route-id="@Model.TemplateResultId">
+        <input type="button" value="Delete" class="btn btn-danger" />
+    </a>
+
+</div>
+
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/Images/Document/Office.jpg" />
+                </div>
+                <div class="col-md-4">
+                    <div><strong>@Html.DisplayNameFor(model => model.TemplateResultId)</strong></div>
+                    <div><strong>@Html.DisplayNameFor(model => model.TemplateResultName)</strong></div>
+                    <div><strong>@Html.DisplayNameFor(model => model.TemplateResultVersion)</strong></div>
+                    <div><strong>@Html.DisplayNameFor(model => model.TemplateResultVersionNET)</strong></div>
+                </div>
+                <div class="col-md-4">
+                    <div>@Html.DisplayFor(model => model.TemplateResultId)</div>
+                    <div>@Html.DisplayFor(model => model.TemplateResultName)</div>
+                    <div>@Html.DisplayFor(model => model.TemplateResultVersion)</div>
+                    <div>@Html.DisplayFor(model => model.TemplateResultVersionNET)</div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="col-md-12">
+            <h2>TemplateResultTitle</h2>
+            <input type="button" id="updateTitle" runat="server" value="Update Title" class="btn btn-primary" />
+            <textarea id="textareaTitle" class="mytextarea" runat="server">@Model.TemplateResultTitle</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <h2>TemplateResultDescription</h2>
+            <input type="button" id="updateDescription" runat="server" value="Update Title" class="btn btn-primary" />
+            <textarea id="textareaDescription" class="mytextarea" runat="server">@Model.TemplateResultDescription</textarea>
+        </div>
+
+        <br />
+
+        <div class="col-md-12">
+            <h2>Liste des TemplateResultItem</h2>
+            <table class="table table-responsive table-striped table-bordered table-hover"
+                   id="TemplateResultItem"
+                   cellspacing="0"
+                   align="center"
+                   width="100%">
+                <tr>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>TemplateResulItemName</th>
+                    <th>TemplateResulItemDescription</th>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+        var detailsBtn = '<input type="button" value="Details" class="btn btn-primary" />';
+        var editBtn = '<input type="button" value="Edit" class="btn btn-success" />';
+
+
+        var templateResultId = @Model.TemplateResultId.ToString();
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "@Url.Action("TemplateResultItems")",
+            data: { "id": templateResultId },
+            success: function (result) {
+                var client = '';
+                for (var i = 0; i < result.length; i++) {
+                    client += '<tr>';
+                    client += '<td><a href="TemplateResultItem?id=' + result[i].TemplateResultItemId + '">' + detailsBtn + '</a></td>';
+                    client += '<td><a href="EditTemplateResultItem?id=' + result[i].TemplateResultItemId + '">' + editBtn + '</a></td>';
+                    client += '<td>' + result[i].TemplateResultItemName + '</td>';
+                    client += '<td>' + result[i].TemplateResultItemDescription + '</td>';
+                     client += '</tr>';
+                }
+                $('#TemplateResultItem').append(client);
+            }
+
+        });
+
+        tinymce.init({
+            selector: '.mytextarea'
+        });
+
+        $('#textareTitle').html('@Model.TemplateResultTitle');
+        $('#textareDescription').html('@Model.TemplateResultDescription');
+
+        $("#updateTitle").click(function () {
+
+            var myTitle = tinymce.get("textareaTitle").getContent();
+            alert('myTitle: ' + myTitle);
+
+            var templateResultId = @Model.TemplateResultId;
+            alert('templateResultId: ' + templateResultId);
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("TemplateResultUpdateTitle")",
+                data: { id: templateResultId, content: myTitle },
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    alert(result);
+                }
+            });
+
+        });
+
+    });
+
+
+
+    </script>
+
+}
+
+
+
+
+

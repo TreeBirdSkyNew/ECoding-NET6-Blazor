@@ -1,0 +1,115 @@
+﻿@model IEnumerable<E_CODING_MVC_NET6_0.Models.TemplateTechniqueVM>
+
+<div class="row">
+    <div class="col-md-12">
+        <a asp-controller="TemplateTechnique" asp-action="CreateTechnique">
+            <input type="button" value="Create TemplateTechnique" class="btn btn-primary" />
+        </a>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-responsive table-striped table-bordered table-hover"
+               id="TableTemplateTechnique"
+               cellspacing="0"
+               align="center"
+               width="100%">
+            <tr>
+                <th><h2>Technique</h2></th>
+                <th><h2>Title</h2></th>
+                <th><h2>Description</h2></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+
+                <tr id="tr_@item.TemplateTechniqueId">
+                    <td><img src="~/Images/software/soft2.jpg" /></td>
+                    <td>
+                        <div>
+                            <a asp-controller="TemplateTechnique" asp-action="Details" asp-route-id="@item.TemplateTechniqueId">
+                                <input type="button" value="Details" class="btn btn-success" />
+                            </a>
+                        </div>
+                        <div>
+                            <a asp-controller="TemplateTechnique" asp-action="Edit" asp-route-id="@item.TemplateTechniqueId">
+                                <input type="button" value="Edit" class="btn btn-primary" />
+                            </a>
+                        </div>
+                        <div>
+                            <input type="button" id="@item.TemplateTechniqueId" value="Delete" class="btn btn-danger predelete" />
+                        </div>
+                    </td>
+                    <td>
+                        <label asp-for="@item.TemplateTechniqueDescription" class="control-label"></label>
+                        <textarea asp-for="@item.TemplateTechniqueDescription" id="textareDescription" class="mytextarea"></textarea>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@Html.Hidden("templatetechniqueId","0")
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary delete">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            tinymce.init({
+                selector: '.mytextarea'
+            });
+
+            $('.predelete').click(function () {
+                var pid = this.id;
+                $('#templatetechniqueId').val(pid);
+                $('#exampleModal').modal('show');
+            });
+
+            $('.delete').click(function (event) {
+                event.preventDefault();
+                $('#exampleModal').modal('hide');
+                var templateTechniqueId = $('#templatetechniqueId').val();
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "@Url.Action("DeleteAjax")",
+                    data: { 'id': templateTechniqueId },
+                    success: function (result) {
+                        alert();
+                        $('#tr_' + projectId).remove();
+
+                    }
+                })
+            });
+        });
+
+    </script>
+
+
+
+}
+
+
+
+
+
+
+

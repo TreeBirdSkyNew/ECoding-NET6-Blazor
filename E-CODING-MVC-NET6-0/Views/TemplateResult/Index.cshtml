@@ -1,0 +1,49 @@
+﻿@model IEnumerable<E_CODING_MVC_NET6_0.Models.TemplateResultVM>
+
+<div>
+    <a asp-controller="TemplateResult" asp-action="Create">
+        <input type="button" value="Create TemplateResult" class="btn btn-primary" />
+    </a>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Liste des TemplateTechnique</h2>
+        <input type="button" value="Clients" id="actionStart">
+        <table class="table table-responsive table-striped table-bordered table-hover"
+               id="TableTemplateProject"
+               cellspacing="0"
+               align="center"
+               width="100%">
+            <tr>
+                <th><strong>@Html.DisplayName("Title")</strong></th>
+                <th><strong>@Html.DisplayName("Title")</strong></th>
+                <th><strong>@Html.DisplayName("Detail")</strong></th>
+                <th><strong>@Html.DisplayName("Edit")</strong></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td><img src="~/Images/Document/Word.jpg" /></td>
+                    <td>@Html.DisplayFor(modelItem => item.TemplateResultTitle)</td>
+                    <td>
+                        <a asp-controller="TemplateResult" asp-action="Details" asp-route-id="@item.TemplateResultId">
+                            <input type="button" value="Details" class="btn btn-primary" />
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-controller="TemplateResult" asp-action="Edit" asp-route-id="@item.TemplateResultId">
+                            <input type="button" value="Edit" class="btn btn-success" />
+                        </a>
+                    </td>
+
+                </tr>
+            }
+            </table>
+    </div>
+</div>
+
+
+

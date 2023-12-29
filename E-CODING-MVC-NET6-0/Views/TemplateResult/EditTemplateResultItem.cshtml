@@ -1,0 +1,97 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateResultItemVM
+
+<h4>TemplateResulItemVM</h4>
+<hr />
+<form asp-action="EditTemplateResultItem">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+
+        <div class="col-md-4">
+            <img src="~/Images/Document/Office.jpg" />
+        </div>
+
+        <div class="col-md-4">
+            <div><strong><label asp-for="TemplateResultItemId" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateResultId" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateTechniqueId" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateProjectId" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateResultItemName" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateResultItemVersion" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateResultItemVersionNET" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateResultItemTitle" class="control-label"></label></strong></div>
+        </div>
+
+        <div class="col-md-4">
+            <div>
+                <input asp-for="TemplateResultItemId" class="form-control" />
+                <span asp-validation-for="TemplateResultItemId" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultId" class="form-control" />
+                <span asp-validation-for="TemplateResultId" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateTechniqueId" class="form-control" />
+                <span asp-validation-for="TemplateTechniqueId" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateProjectId" class="form-control" />
+                <span asp-validation-for="TemplateProjectId" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultItemName" class="form-control" />
+                <span asp-validation-for="TemplateResultItemName" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultItemVersion" class="form-control" />
+                <span asp-validation-for="TemplateResultItemVersion" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultItemVersionNET" class="form-control" />
+                <span asp-validation-for="TemplateResultItemVersionNET" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultItemTitle" class="form-control" />
+                <span asp-validation-for="TemplateResultItemTitle" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <textarea asp-for="TemplateResultItemTitle" id="templateResultItemTitle" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateResultItemTitle" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <textarea asp-for="TemplateResultItemDescription" id="templateResultItemDescription" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateResultItemDescription" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+    </div>
+
+</form>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+
+                tinymce.init({
+                    selector: '.mytextarea'
+                });
+
+            $('#templateResultItemDescription').html('@Model.TemplateResultItemDescription');
+            $('#templateResultItemTile').html('@Model.TemplateResultItemTitle');
+        });
+
+</script>
+}

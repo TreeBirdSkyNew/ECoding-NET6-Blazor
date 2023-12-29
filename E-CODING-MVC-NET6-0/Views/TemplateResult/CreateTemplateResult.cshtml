@@ -1,0 +1,55 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateResultVM
+
+<form asp-action="CreateTemplateResult">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/Images/software/soft2.jpg" />
+        </div>
+
+        <div class="col-md-4">
+            <div><label asp-for="TemplateResultId" class="control-label"></label></div>
+            <div><label asp-for="TemplateResultName" class="control-label"></label></div>
+            <div><label asp-for="TemplateResultVersion" class="control-label"></label></div> 
+            <div><label asp-for="TemplateResultVersionNET" class="control-label"></label></div>   
+            <div><label asp-for="TemplateResultTitle" class="control-label"></label></div>  
+            <div><label asp-for="TemplateResultDescription" class="control-label"></label></div>
+        </div>
+
+        <div class="col-md-4">
+            <div>
+                <input asp-for="TemplateResultId" class="form-control" />
+                <span asp-validation-for="TemplateResultId" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultName" class="form-control" />
+                <span asp-validation-for="TemplateResultName" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultVersion" class="form-control" />
+                <span asp-validation-for="TemplateResultVersion" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultVersionNET" class="form-control" />
+                <span asp-validation-for="TemplateResultVersionNET" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultTitle" class="form-control" />
+                <span asp-validation-for="TemplateResultTitle" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultDescription" class="form-control" />
+                <span asp-validation-for="TemplateResultDescription" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+
+    </div>
+
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

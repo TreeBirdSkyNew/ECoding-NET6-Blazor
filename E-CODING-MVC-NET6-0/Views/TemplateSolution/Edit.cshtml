@@ -1,0 +1,105 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateSolutionVM
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        <strong><label asp-for="TemplateSolutionId" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateSolutionName" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateSolutionTitle" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateSolutionDescription" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateSolutionVersion" class="control-label"></label></strong>
+                    </div>
+                    <div>
+                        <strong><label asp-for="TemplateSolutionVersionNet" class="control-label"></label></strong>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <input asp-for="TemplateSolutionId" class="form-control" />
+                        <span asp-validation-for="TemplateSolutionId" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateSolutionName" class="form-control" />
+                        <span asp-validation-for="TemplateSolutionName" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateSolutionTitle" class="form-control" />
+                        <span asp-validation-for="TemplateSolutionTitle" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateSolutionDescription" class="form-control" />
+                        <span asp-validation-for="TemplateSolutionDescription" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateSolutionVersion" class="form-control" />
+                        <span asp-validation-for="TemplateSolutionVersion" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="TemplateSolutionVersionNet" class="form-control" />
+                        <span asp-validation-for="TemplateSolutionVersionNet" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="~/Images/software/soft3.jpg" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="TemplateSolutionTitle" class="control-label"></label>
+                    <textarea asp-for="TemplateSolutionTitle" id="textareTitle" class="mytextarea"></textarea>
+                    <span asp-validation-for="TemplateSolutionTitle" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="TemplateSolutionDescription" class="control-label"></label>
+                    <textarea asp-for="TemplateSolutionDescription" id="textareDescription" class="mytextarea"></textarea>
+                    <span asp-validation-for="TemplateSolutionDescription" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+    </div>
+
+</form>
+
+@section scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            tinymce.init({
+                selector: '.mytextarea'
+            });
+
+            $('#textareTitle').html('@Model.TemplateSolutionTitle');
+            $('#textareDescription').html('@Model.TemplateSolutionDescription');
+
+        });
+
+    </script>
+
+}

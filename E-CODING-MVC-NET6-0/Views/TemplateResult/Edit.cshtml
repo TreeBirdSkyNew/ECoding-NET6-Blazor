@@ -1,0 +1,67 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateResultVM
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+
+        <div class="col-md-4">
+            <img src="~/Images/Document/Office.jpg" />
+        </div>
+        <div class="col-md-4">
+            <div><strong><label asp-for="TemplateResultId" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateResultVersion" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateResultVersionNET" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateResultTitle" class="control-label"></label></strong></div>
+        </div>
+        <div class="col-md-4">
+            <div>
+                <input asp-for="TemplateResultId" class="form-control" />
+                <span asp-validation-for="TemplateResultId" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultName" class="form-control" />
+                <span asp-validation-for="TemplateResultName" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultVersion" class="form-control" />
+                <span asp-validation-for="TemplateResultVersion" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultVersionNET" class="form-control" />
+                <span asp-validation-for="TemplateResultVersionNET" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateResultTitle" class="form-control" />
+                <span asp-validation-for="TemplateResultTitle" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <textarea asp-for="TemplateResultDescription" id="templateResultDescription" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateResultDescription" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+            tinymce.init({
+                selector: '.mytextarea'
+            });
+
+        $('#templateResultDescription').html('@Model.TemplateResultDescription');
+    });
+
+    </script>
+}

@@ -1,0 +1,80 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateTechniqueVM
+
+Title="CreateTemplateTechnique"
+
+<div>
+    <a asp-controller="TemplateTechnique" asp-action="Index">
+        <input type="button" value="List TemplateTechnique" class="btn btn-primary" />
+    </a>
+</div>
+
+<form asp-action="CreateTemplateTechnique">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/Images/software/soft2.jpg" />
+        </div>
+        <div class="col-md-4">
+            <div><strong><label asp-for="TemplateTechniqueId" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateProjectId" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateTechniqueTitle" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateTechniqueName" class="control-label"></label></strong></div>
+            <div><strong><label asp-for="TemplateTechniqueVersion" class="control-label"></label></strong></div>
+        </div>
+
+        <div class="col-md-4">
+            <div>
+                <input asp-for="TemplateTechniqueId" class="form-control" />
+                <span asp-validation-for="TemplateTechniqueId" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateProjectId" class="form-control" />
+                <span asp-validation-for="TemplateProjectId" class="text-danger"></span>
+            </div>
+            <div class="col-md-12">
+                <input asp-for="TemplateTechniqueTitle" class="form-control" />
+                <span asp-validation-for="TemplateTechniqueTitle" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateTechniqueName" class="form-control" />
+                <span asp-validation-for="TemplateTechniqueName" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateTechniqueVersion" class="form-control" />
+                <span asp-validation-for="TemplateTechniqueVersion" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="TemplateTechniqueVersionNET" class="form-control" />
+                <span asp-validation-for="TemplateTechniqueVersionNET" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <textarea asp-for="TemplateTechniqueDescription" id="templateTechniqueDescription" class="mytextarea"></textarea>
+            <span asp-validation-for="TemplateTechniqueDescription" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        tinymce.init({
+            selector: '.mytextarea'
+        });
+
+        $('#TemplateTechniqueDescription').html('@Model.TemplateTechniqueDescription');
+    });
+
+</script>
+}

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<E_CODING_MVC_NET6_0.Models.TemplateSolutionVM>
+
+<div class="row">
+    <div class="col-md-12">
+        <a asp-controller="TemplateSolution" asp-action="Create">
+            <input type="button" value="Create TemplateSolution" class="btn btn-primary" />
+        </a>
+    </div>
+</div>
+
+<div class="tile-container">
+    @foreach (var item in Model)
+    {
+        <a class="tile" asp-controller="TemplateSolution" asp-action="Details" asp-route-id="@item.TemplateSolutionId">
+            <div class="tile-content">
+                <img src="~/Images/software/soft2.jpg" />
+                <div class="tile-title">
+                    @Html.DisplayFor(modelItem => item.TemplateSolutionTitle)
+                </div>
+            </div>
+        </a>
+    }
+</div>
+
+
+@Html.Hidden("projectId","0")
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary delete">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            tinymce.init({
+                selector: '.mytextarea'
+            });
+
+            $('.predelete').click(function () {
+                var pid = this.id;
+                $('#solutionId').val(pid);
+                $('#exampleModal').modal('show');
+            });
+
+            $('.delete').click(function (event) {
+                event.preventDefault();
+                $('#exampleModal').modal('hide');
+                var projectId = $('#solutionId').val();
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "@Url.Action("DeleteAjax")",
+                    data: { 'id': projectId },
+                    success: function (result) {
+                        alert();
+                        $('#tr_' + projectId).remove();
+
+                    }
+                })
+            });
+        });
+
+    </script>
+}
+
+
+
+
+
+
+

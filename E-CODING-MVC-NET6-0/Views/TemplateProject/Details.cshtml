@@ -1,0 +1,161 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateProjectVM
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        <h4>@Model.TemplateProjectTitle</h4>
+                    </div>
+                    <img src="~/Images/software/soft3.jpg" />
+                </div>
+                <div class="col-md-3" style="margin-top: 50px;">
+                    <div>
+                        <strong>@Html.DisplayNameFor(model => model.TemplateProjectId)</strong>
+                    </div>
+                    <div>
+                        <strong>@Html.DisplayNameFor(model => model.TemplateProjectName)</strong>
+                    </div>
+                    <div>
+                        <strong>@Html.DisplayNameFor(model => model.TemplateProjectVersion)</strong>
+                    </div>
+                    <div>
+                        <strong>@Html.DisplayNameFor(model => model.TemplateProjectVersionNet)</strong>
+                    </div>
+                </div>
+                <div class="col-md-5" style="margin-top: 50px;">
+                    
+                    <div>
+                        @Html.DisplayFor(model => model.TemplateProjectId)
+                    </div>
+                    <div>
+                        @Html.DisplayFor(model => model.TemplateProjectName)
+                    </div>
+                    <div>
+                        @Html.DisplayFor(model => model.TemplateProjectVersion)
+                    </div>
+                    <div>
+                        @Html.DisplayFor(model => model.TemplateProjectVersionNet)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr/><hr/>
+
+        <div class="col-md-12">
+            <label asp-for="TemplateProjectDescription" class="control-label"></label>
+            <textarea asp-for="TemplateProjectDescription" id="textareDescription" class="mytextarea"></textarea>
+        </div>
+
+        <hr/><hr/>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Liste des TemplateTechnique</h2>
+                    <table class="table table-responsive table-striped table-bordered table-hover"
+                           id="TableTechniqueId"
+                           cellspacing="0"
+                           align="center"
+                           width="100%">
+                        <tr>
+                            <th>Name</th>
+                            <th>Title</th>
+                            <th>Edit</th>
+                            <th>Details</th>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="col-md-12">
+                    <h2>Liste des TemplateFonctionnelEntity</h2>
+                    <table class="table table-responsive table-striped table-bordered table-hover"
+                           id="TableTechniqueEntityId"
+                           cellspacing="0"
+                           align="center"
+                           width="100%">
+                        <tr>
+                            <th>Name</th>
+                            <th>Title</th>
+                            <th>Edit</th>
+                            <th>Details</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+    </div>
+
+</form>
+
+@section scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var details = '<input type="button" value="Details" class="btn btn-primary" />';
+            var edit = '<input type="button" value="Edit" class="btn btn-success" />';
+
+            var templateProjectId = @Model.TemplateProjectId.ToString();
+            alert(templateProjectId);
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "@Url.Action("DetailsTechnique")",
+                data: { "id": templateProjectId },
+                success: function (result) {
+                    var client = '';
+                    for (var i = 0; i < result.length; i++) {
+                        client += '<tr>';
+                        client += '<td>' + result[i].TemplateTechniqueName + '</td>';
+                        client += '<td>' + result[i].TemplateTechniqueTitle + '</td>';
+                        client += '<td><a asp-controller="TemplateTechnique" asp-action="Edit" asp-route-id=' + result[i].TemplateTechniqueId + '>' + edit + '</a></td>';
+                        client += '</tr>';
+                    }
+                    $('#TableTechniqueId').append(client);
+                }
+            });
+
+            /*
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "@Url.Action("DetailsEntity")",
+                data: { "id": templateProjectId },
+                success: function (result) {
+                    var client = '';
+                    for (var i = 0; i < result.length; i++) {
+                        client += '<tr>';
+                        client += '<td>' + result[i].TemplateFonctionnelEntityName + '</td>';
+                        client += '<td>' + result[i].TemplateFonctionnelEntityTitle + '</td>';
+                        client += '<td><a href="Edit?id=' + result[i].TemplateFonctionnelEntityId + '">' + edit + '</a></td>';
+                        client += '<td><a href="Details?id=' + result[i].TemplateFonctionnelEntityId + '">' + details + '</a></td>';
+                        client += '</tr>';
+                    }
+                    $('#TableTechniqueEntityId').append(client);
+                }
+            });
+            */
+            tinymce.init({
+                selector: '.mytextarea'
+            });
+
+            $('#textareDescription').html('@Model.TemplateProjectDescription');
+        });
+
+    </script>
+
+}

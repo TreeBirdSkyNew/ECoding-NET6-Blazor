@@ -1,0 +1,74 @@
+﻿@model IEnumerable<E_CODING_MVC_NET6_0.Models.TemplateTechniqueItemVM>
+
+<partial name="_SlideView" />
+
+
+
+@foreach (var item in Model)
+{
+    <h2>TemplateResult @item.TemplateTechniqueItemName</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/Images/Document/Office.jpg" />
+                </div>
+                <div class="col-md-4">
+                    <div><strong>@Html.DisplayNameFor(modelItem => item.TemplateTechniqueItemId)</strong></div>
+                    <div><strong>@Html.DisplayNameFor(modelItem => item.TemplateTechniqueId)</strong></div>
+                    <div><strong>@Html.DisplayNameFor(modelItem => item.TemplateTechniqueItemName)</strong></div>
+                    <div><strong>@Html.DisplayNameFor(modelItem => item.TemplateTechniqueItemTitle)</strong></div>
+                    <div><strong>@Html.DisplayNameFor(modelItem => item.TemplateTechniqueItemVersion)</strong></div>
+                </div>
+                <div class="col-md-4">
+                    <div>@Html.DisplayFor(modelItem => item.TemplateTechniqueItemId)</div>
+                    <div>@Html.DisplayFor(modelItem => item.TemplateTechniqueId)</div>
+                    <div>@Html.DisplayFor(modelItem => item.TemplateTechniqueItemName)</div>
+                    <div>@Html.DisplayFor(modelItem => item.TemplateTechniqueItemTitle)</div>
+                    <div>@Html.DisplayFor(modelItem => item.TemplateTechniqueItemVersion)</div>
+                    <a asp-controller="TemplateTechnique" asp-action="EditTemplateTechniqueItem" asp-route-id="@item.TemplateTechniqueItemId">
+                        <input type="button" value="EditTemplateTechniqueItem" class="btn btn-primary btn-lg" />
+                    </a>
+                </div>
+                <div class="col-md-12">
+                    <h2>TemplateTechniqueInitialFile</h2>
+                    <textarea id="textareaTitle" class="mytextarea" runat="server">@item.TemplateTechniqueInitialFile</textarea>
+                </div>
+
+                <div class="col-md-12">
+                    <h2>TemplateTechniqueFinalContent</h2>
+                    <textarea id="textareaDescription" rows="40" class="mytextarea" runat="server">@item.TemplateTechniqueFinalContent</textarea>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+<partial name="_SlideViewResult" />
+
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            tinymce.init({
+                selector: '.mytextarea'
+            });
+
+
+        });
+
+    </script>
+
+}
+
+
+
+
+

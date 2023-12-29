@@ -1,0 +1,82 @@
+﻿@model E_CODING_MVC_NET6_0.Models.TemplateTechniqueItemVM
+
+<div>
+    <h4>TemplateTechniqueItemVM</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/Images/software/soft1.jpg" />
+        </div>
+        <div class="col-md-4">
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateTechniqueItemId)</strong></div>
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateTechniqueId)</strong></div>
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateTechniqueItemName)</strong></div>
+            <div><strong>@Html.DisplayNameFor(model => model.TemplateTechniqueItemVersion)</strong></div>
+        </div>
+        <div class="col-md-4">
+            <div>@Html.DisplayFor(model => model.TemplateTechniqueItemId)</div>
+            <div>@Html.DisplayFor(model => model.TemplateTechniqueId)</div>
+            <div>@Html.DisplayFor(model => model.TemplateTechniqueItemName)</div>
+            <div>@Html.DisplayFor(model => model.TemplateTechniqueItemVersion)</div>
+        </div>
+
+        <div class="col-md-12">
+            <h1>Template Technique</h1>
+            <div id="Technique" class="carousel slide" data-ride="carousel">
+                <ul class="carousel-indicators">
+                    <li data-target="#Technique" data-slide-to="0" class="active"></li>
+                    <li data-target="#Technique" data-slide-to="1"></li>
+                    <li data-target="#Technique" data-slide-to="2"></li>
+                    <li data-target="#Technique" data-slide-to="3"></li>
+                </ul>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="~/Images/fonctionnel/fonctionnelle1.jpg" />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Images/software/soft2.jpg" />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Images/software/soft3.jpg" />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Images/software/soft4.jpg" />
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#Technique" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#Technique" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h2>TemplateResultDescription</h2>
+            <textarea id="textareDescription" class="mytextarea"></textarea>
+        </div>
+        <div class="col-md-6">
+            <h2>TemplateResultDescription</h2>
+            <textarea id="textareDescription" class="mytextarea"></textarea>
+        </div>
+
+    </div>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            tinymce.init({
+                selector: '.mytextarea'
+            });
+
+            $('#textareTitle').html('@Model.TemplateTechniqueItemTitle');
+            $('#textareDescription').html('@Model.TemplateTechniqueItemDescription');
+        });
+
+    </script>
+
+}
