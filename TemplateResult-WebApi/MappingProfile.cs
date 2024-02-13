@@ -1,11 +1,10 @@
 ﻿using E_CODING_DAL.Models;
 using AutoMapper;
-using E_CODING_MVC_NET6_0;
-using E_CODING_MVC_NET6_0.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using E_CODING_FrontBlazor.DTOs;
 
 namespace __WEB_API__TemplateResult_WebApi
 {
@@ -16,15 +15,6 @@ namespace __WEB_API__TemplateResult_WebApi
             // Add as many of these lines as you need to map your objects
             CreateMap<TemplateProject, TemplateProjectVM>();
             CreateMap<TemplateProjectVM, TemplateProject>();
-
-            CreateMap<TemplateFonctionnel, TemplateFonctionnelVM>();
-            CreateMap<TemplateFonctionnelVM, TemplateFonctionnel>();
-
-            CreateMap<TemplateFonctionnelEntity, TemplateFonctionnelEntityVM>();
-            CreateMap<TemplateFonctionnelEntityVM, TemplateFonctionnelEntity>();
-
-            CreateMap<TemplateFonctionnelProperty, TemplateFonctionnelPropertyVM>();
-            CreateMap<TemplateFonctionnelPropertyVM, TemplateFonctionnelProperty>();
 
             CreateMap<TemplateTechnique, TemplateTechniqueVM>();
             CreateMap<TemplateTechniqueVM, TemplateTechnique>();

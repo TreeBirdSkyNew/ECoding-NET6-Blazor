@@ -1,14 +1,15 @@
 ﻿@page "/templatesolutioncreate/{Id}"
-
+@using E_CODING_FrontBlazor.DTOs;
 
 <PageTitle>Les Template Solution</PageTitle>
 
-<div class="row">
-    <div class="col-sm-4">
-        <EditForm Model="@templateSolutionVM" OnSubmit="HandleValidSubmit">
+<EditForm Model="@templateSolutionVM" OnSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <div class="row">
+        <div class="col-sm-4">
             <h3>Edit TemplateSolution</h3>
             <hr />
-            <div class=form-group row">
+            <div class="form-group row">
                 <label for="TemplateProjectId" class="col-sm-2 col-form-label">
                     ProjectId :
                 </label>
@@ -28,8 +29,9 @@
                 </label>
                 <div class="col-sm-10">
                     <InputText id="TemplateSolutionTitle"
-                               @bind-Value="templateSolutionVM.TemplateSolutionTitle"
+                                @bind-Value="templateSolutionVM.TemplateSolutionTitle"
                             class="form-control"></InputText>
+                    <ValidationMessage For="@(() => templateSolutionVM.TemplateSolutionTitle)" />
                 </div>
             </div>
             <div class="form-group row">
@@ -38,8 +40,9 @@
                 </label>
                 <div class="col-sm-10">
                     <InputText id="TemplateSolutionName"
-                               @bind-Value="templateSolutionVM.TemplateSolutionName"
+                                @bind-Value="templateSolutionVM.TemplateSolutionName"
                             class="form-control"></InputText>
+                    <ValidationMessage For="@(() => templateSolutionVM.TemplateSolutionName)" />
                 </div>
             </div>
             <div class="form-group row">
@@ -49,31 +52,52 @@
                 <div class="col-sm-10">
                     <InputTextArea id="TemplateSolutionDescription" 
                                 @bind-Value="templateSolutionVM.TemplateSolutionDescription"
-                              class="form-control"></InputTextArea>
+                                class="form-control"></InputTextArea>
+                    <ValidationMessage For="@(() => templateSolutionVM.TemplateSolutionDescription)" />
                 </div>
             </div>
             <div class="form-group row">
-                <label for="TemplateSolutionVersion" class="form-label">
+                <label for="TemplateSolutionVersion" class="col-sm-2 col-form-label">
                     Version :
                 </label>
                 <div class="col-sm-10">
                     <InputText id="TemplateSolutionVersion"
-                               @bind-Value="templateSolutionVM.TemplateSolutionVersion"
-                               class="form-control"></InputText>
+                                @bind-Value="templateSolutionVM.TemplateSolutionVersion"
+                                class="form-control"></InputText>
+                    <ValidationMessage For="@(() => templateSolutionVM.TemplateSolutionVersion)" />
                 </div>
             </div>
             <div class="form-group row">
-                <label for="TemplateSolutionVersionNet" class="form-label">
+                    <label for="TemplateSolutionVersionNet" class="col-sm-2 col-form-label">
                     VersionNet :
                 </label>
                     <div class="col-sm-10">
                     <InputText id="TemplateSolutionVersionNet"
-                               @bind-Value="templateSolutionVM.TemplateSolutionVersionNet"
-                               class="form-control"></InputText>
+                                @bind-Value="templateSolutionVM.TemplateSolutionVersionNet"
+                                class="form-control"></InputText>
+                    <ValidationMessage For="@(() => templateSolutionVM.TemplateSolutionVersionNet)" />
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
-        </EditForm>
+        </div>
     </div>
-</div>
+</EditForm>
 
+@if (TemplateProjectVMs == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <ul>
+        <li>
+            <div class="card-deck" style="display: inline;">
+                @foreach (var project in TemplateProjectVMs)
+                {
+                    <DisplayProjectBase TemplateProject="project">
+                    </DisplayProjectBase>
+                }
+            </div>
+        </li>
+    </ul>
+}

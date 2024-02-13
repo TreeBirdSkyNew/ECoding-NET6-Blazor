@@ -9,7 +9,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 
 
-namespace E_CODING_FrontBlazor.Pages
+namespace E_CODING_FrontBlazor.Pages.TemplateSolution
 {
     public partial class TemplateSolutionCreate
     {        
@@ -34,7 +34,6 @@ namespace E_CODING_FrontBlazor.Pages
         protected override async Task OnInitializedAsync()
         {
             int.TryParse(Id, out int templateSolutionId);
-            
             if (templateSolutionId != 0)
             {
                 templateSolutionVM = await TemplateSolutionApiClient.GetTemplateSolution("ClientApiSolution", "SolutionDetails/" + Id);
@@ -42,30 +41,22 @@ namespace E_CODING_FrontBlazor.Pages
             else
             {
                 templateSolutionVM = new TemplateSolutionVM();
-
             }
-
             TemplateProjectVMs = await TemplateProjectApiClient.GetAllTemplateProject("ClientApiProject", "Index");
         }
 
         private async Task HandleValidSubmit()
         {
-            
             StringContent content = new StringContent(JsonConvert.SerializeObject(templateSolutionVM), Encoding.UTF8, "application/json");
             if (templateSolutionVM.TemplateSolutionId != 0)
             {
-                
                 await TemplateSolutionApiClient.PutTemplateSolution("ClientApiSolution", "Edit/" + Id, content);
             }
             else
             {
                 await TemplateSolutionApiClient.PostTemplateSolution("ClientApiSolution", "Create", content);
             }
-            
-            NavigationManager.NavigateTo("/");
-            
-
-            
+            NavigationManager.NavigateTo("/templatesolutionlist");
         }
     }
 }

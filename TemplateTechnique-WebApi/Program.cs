@@ -9,16 +9,13 @@ using E_CODING_Services.Technique;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using NLog;
 using TemplateTechnique_WebApi;
 using TemplateTechnique_WebApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
 builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
-builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureSqlServerContext();
 
 builder.Services.AddScoped<ITemplateTechniqueRepository, TemplateTechniqueRepository>();

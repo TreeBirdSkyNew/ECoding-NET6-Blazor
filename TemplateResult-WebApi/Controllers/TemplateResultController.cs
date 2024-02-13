@@ -1,15 +1,10 @@
-﻿using E_CODING_DAL.Models;
-using AutoMapper;
-using E_CODING_MVC_NET6_0;
-using E_CODING_MVC_NET6_0.Models;
-using E_CODING_Service_Abstraction;
-using E_CODING_Services;
+﻿using AutoMapper;
+using E_CODING_DAL.Models;
+using E_CODING_FrontBlazor.DTOs;
 using E_CODING_Services.Result;
-using E_CODING_Services.Technique;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGeneration.Templating;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Threading.Tasks;
-using TemplateResult = E_CODING_DAL.Models.TemplateResult;
+
 
 namespace __WEB_API__TemplateResult_WebApi
 {
@@ -27,16 +22,13 @@ namespace __WEB_API__TemplateResult_WebApi
     {
         private readonly IResultRepositoryWrapper _resultRepositoryWrapper;
         private readonly IMapper _mapper;
-        private readonly ILoggerManager _logger;
 
         public TemplateResultController(
             IResultRepositoryWrapper resultRepositoryWrapper,
-            IMapper mapper,
-            ILoggerManager logger)
+            IMapper mapper)
         {
             _resultRepositoryWrapper = resultRepositoryWrapper;
             _mapper = mapper;
-            _logger = logger;
         }
 
         [HttpGet]
@@ -48,13 +40,11 @@ namespace __WEB_API__TemplateResult_WebApi
             try
             {
                 IEnumerable<TemplateResult> templateResults = _resultRepositoryWrapper.ResultRepository.GetAllTemplateResult();
-                _logger.LogInfo($"Returned all templateResults from database.");
                 IEnumerable<TemplateResultVM> templateResultsVM = _mapper.Map<List<TemplateResultVM>>(templateResults);
                 return Ok(templateResultsVM);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TemplateResult/Index action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -74,7 +64,6 @@ namespace __WEB_API__TemplateResult_WebApi
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TemplateResult/Index action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -93,7 +82,6 @@ namespace __WEB_API__TemplateResult_WebApi
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TemplateResult/TemplateResultItem action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -113,7 +101,6 @@ namespace __WEB_API__TemplateResult_WebApi
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TemplateResult/Create action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -129,12 +116,10 @@ namespace __WEB_API__TemplateResult_WebApi
             {
                 if (templateResultVM is null)
                 {
-                    _logger.LogError("templateTechnique object sent from client is null.");
                     return BadRequest("templateTechnique object is null");
                 }
                 if (!ModelState.IsValid)
                 {
-                    _logger.LogError("Invalid templateTechnique object sent from client.");
                     return BadRequest("Invalid model object");
                 }
                 TemplateResult templateResultEntity = _mapper.Map<TemplateResult>(templateResultVM);
@@ -146,7 +131,6 @@ namespace __WEB_API__TemplateResult_WebApi
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TemplateResultDetails for TemplateResultId action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -166,7 +150,6 @@ namespace __WEB_API__TemplateResult_WebApi
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TemplateResultItemCreate action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -182,12 +165,10 @@ namespace __WEB_API__TemplateResult_WebApi
             {
                 if (templateResultItemVM is null)
                 {
-                    _logger.LogError("TemplateResulItem object sent from client is null.");
                     return BadRequest("TemplateResulItem object is null");
                 }
                 if (!ModelState.IsValid)
                 {
-                    _logger.LogError("Invalid TemplateResulItem object sent from client.");
                     return BadRequest("Invalid model object");
                 }
                 TemplateResultItem templateResultItemEntity = _mapper.Map<TemplateResultItem>(templateResultItemVM);
@@ -198,7 +179,6 @@ namespace __WEB_API__TemplateResult_WebApi
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TemplateResulItem action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -215,18 +195,15 @@ namespace __WEB_API__TemplateResult_WebApi
             {
                 if (templateResultVM is null)
                 {
-                    _logger.LogError("TemplateResult object sent from client is null.");
                     return BadRequest("TemplateResult object is null");
                 }
                 if (!ModelState.IsValid)
                 {
-                    _logger.LogError("Invalid TemplateResult object sent from client.");
                     return BadRequest("Invalid model object");
                 }
                 var templateResultEntity = _resultRepositoryWrapper.ResultRepository.FindByCondition(id);
                 if (templateResultEntity is null)
                 {
-                    _logger.LogError($"TemplateResult with id: {id}, hasn't been found in db.");
                     return NotFound();
                 }
                 _mapper.Map(templateResultVM, templateResultEntity);
@@ -236,7 +213,6 @@ namespace __WEB_API__TemplateResult_WebApi
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TemplateResult action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -252,18 +228,15 @@ namespace __WEB_API__TemplateResult_WebApi
             {
                 if (templateResulItemVM is null)
                 {
-                    _logger.LogError("TemplateResulItemVM object sent from client is null.");
                     return BadRequest("TemplateResulItemVM object is null");
                 }
                 if (!ModelState.IsValid)
                 {
-                    _logger.LogError("Invalid TemplateResulItemVM object sent from client.");
                     return BadRequest("Invalid model object");
                 }
                 var templateResulItemEntity = _resultRepositoryWrapper.ResultItemRepository.FindByCondition(id);
                 if (templateResulItemEntity is null)
                 {
-                    _logger.LogError($"TemplateResulItemVM with id: {id}, hasn't been found in db.");
                     return NotFound();
                 }
                 _mapper.Map(templateResulItemVM, templateResulItemEntity);
@@ -273,7 +246,6 @@ namespace __WEB_API__TemplateResult_WebApi
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TemplateResulItemVM action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -287,18 +259,15 @@ namespace __WEB_API__TemplateResult_WebApi
                 var templateResult = _resultRepositoryWrapper.ResultRepository.FindByCondition(id);
                 if (templateResult == null)
                 {
-                    _logger.LogError($"TemplateResult with id: {id}, hasn't been found in db.");
                 }
                 if (_resultRepositoryWrapper.ResultItemRepository.GetAllTemplateResultItem(id).Any())
                 {
-                    _logger.LogError($"Cannot delete owner with id: {id}. It has related accounts. Delete those accounts first");
                 }
                 _resultRepositoryWrapper.ResultRepository.DeleteTemplateResult(templateResult);
                 _resultRepositoryWrapper.Save();
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside DeleteTemplateResult action: {ex.Message}");
             }
         }
 
@@ -311,18 +280,15 @@ namespace __WEB_API__TemplateResult_WebApi
                 var templateResultItem = _resultRepositoryWrapper.ResultItemRepository.FindByCondition(id);
                 if (templateResultItem == null)
                 {
-                    _logger.LogError($"TemplateResultItem with id: {id}, hasn't been found in db.");
                 }
                 if (_resultRepositoryWrapper.ResultItemRepository.GetAllTemplateResultItem(id).Any())
                 {
-                    _logger.LogError($"Cannot delete owner with id: {id}. It has related accounts. Delete those accounts first");
                 }
                 _resultRepositoryWrapper.ResultItemRepository.DeleteTemplateResultItem(templateResultItem);
                 _resultRepositoryWrapper.Save();
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside DeleteTemplateResultItem action: {ex.Message}");
             }
         }
     }

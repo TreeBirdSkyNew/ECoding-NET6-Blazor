@@ -24,6 +24,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\4 - E-CODING-DAL\E-CODING-DAL.csproj" />
+    <ProjectReference Include="..\E-CODING-DAL\E-CODING-DAL.csproj" />
+    <ProjectReference Include="..\E-CODING-FrontBlazor\E-CODING-FrontBlazor.csproj" />
+    <ProjectReference Include="..\E-CODING-Services\E-CODING-Services.csproj" />
   </ItemGroup>
 
 </Project>

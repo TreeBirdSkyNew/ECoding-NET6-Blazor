@@ -2,7 +2,7 @@
 using E_CODING_FrontBlazor.Infrastructure.Solution;
 using Microsoft.AspNetCore.Components;
 
-namespace E_CODING_FrontBlazor.Pages
+namespace E_CODING_FrontBlazor.Pages.TemplateSolution
 {
     public partial class TemplateSolutionList
     {

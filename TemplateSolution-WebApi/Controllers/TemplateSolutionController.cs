@@ -48,6 +48,7 @@ namespace TemplateSolution_WebApi.Controllers
         {
             try
             {
+                
                 TemplateSolution templateSolution = _solutionRepositoryWrapper.SolutionRepository.FindByCondition(id);
                 if (templateSolution is null)
                 {
@@ -55,7 +56,10 @@ namespace TemplateSolution_WebApi.Controllers
                 }
                 else
                 {
+                    List<TemplateProject> templateProjects = _solutionRepositoryWrapper.ProjectRepository.GetAllTemplateProject().Where(x => x.TemplateSolutionId == id).ToList();
+                    List<TemplateProjectVM> templateProjectsVM = _mapper.Map<List<TemplateProjectVM>>(templateProjects);
                     TemplateSolutionVM templateSolutionVM = _mapper.Map<TemplateSolutionVM>(templateSolution);
+                    templateSolutionVM.TemplateProject= templateProjectsVM;
                     return Ok(templateSolutionVM);
                 }
             }
@@ -122,7 +126,7 @@ namespace TemplateSolution_WebApi.Controllers
         }
 
         [Route("Delete/{id}")]
-        [HttpPost("{id}")]
+        [HttpDelete("{id}")]
         public void DeleteTemplateSolution(int id)
         {
             try

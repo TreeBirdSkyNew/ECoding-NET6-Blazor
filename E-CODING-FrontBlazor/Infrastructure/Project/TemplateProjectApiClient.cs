@@ -59,7 +59,12 @@ namespace E_CODING_FrontBlazor.Infrastructure.Project
         var httpResponseMessage = await PostObject<TemplateProjectVM>(clientName, api, content);
     }
 
-    public async Task DeleteTemplateProject(string clientName, string api)
+    public async Task PutTemplateProject(string clientName, string api, StringContent content)
+    {
+        var httpResponseMessage = await PutObject<TemplateProjectVM>(clientName, api, content);
+    }
+
+        public async Task DeleteTemplateProject(string clientName, string api)
     {
         var httpResponseMessage = await DeleteObject<TemplateProjectVM>(clientName, api);
     }

@@ -1,0 +1,50 @@
+﻿@page "/templateprojectlist"
+
+
+<PageTitle>Les Template Project</PageTitle>
+
+@if (projects == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div>
+        <a href="@("templateprojectcreate/0")" class="btn btn-danger m-1">Create</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>TemplateSolutionId</th>
+                <th>TemplateProjectId</th>
+                <th>TemplateProjectName</th>
+                <th>TemplateProjectDescription</th>
+                <th>TemplateProjectVersion</th>
+                <th>TemplateProjectVersionNet</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var templateProject in projects)
+            {
+                <tr>
+                    <td>@templateProject.TemplateSolutionId</td>
+                    <td>@templateProject.TemplateProjectId</td>
+                    <td>@templateProject.TemplateProjectName</td>
+                    <td>@templateProject.TemplateProjectDescription</td>
+                    <td>@templateProject.TemplateProjectVersion</td>
+                    <td>@templateProject.TemplateProjectVersionNet</td>
+                    <td>
+                        <a href="@($"templateprojectcreate/{@templateProject.TemplateProjectId}")" class="btn btn-primary m-1">Edit</a>
+                    </td>
+                    <td>
+                        <a href="@($"templateprojectcreate/{@templateProject.TemplateProjectId}")" class="btn btn-danger m-1">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

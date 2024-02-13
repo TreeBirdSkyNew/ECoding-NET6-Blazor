@@ -4,7 +4,6 @@ using E_CODING_Service_Abstraction.Project;
 using E_CODING_Service_Abstraction.Technique;
 using E_CODING_Services.Project;
 using E_CODING_Services.Technique;
-using LoggerService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -31,10 +30,7 @@ namespace TemplateTechnique_WebApi.Extensions
             });
         }
 
-        public static void ConfigureLoggerService(this IServiceCollection services)
-        {
-            services.AddSingleton<ILoggerManager, LoggerManager>();
-        }
+      
         
         public static void ConfigureSqlServerContext(this IServiceCollection services)
         {

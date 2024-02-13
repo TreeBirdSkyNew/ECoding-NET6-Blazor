@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using System.Text;
 
-namespace E_CODING_FrontBlazor.Pages
+namespace E_CODING_FrontBlazor.Pages.TemplateSolution
 {
     public partial class TemplateSolutionDelete
     {

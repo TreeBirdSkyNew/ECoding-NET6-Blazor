@@ -2,7 +2,6 @@
 using E_CODING_Service_Abstraction;
 using E_CODING_Service_Abstraction.Project;
 using E_CODING_Services.Project;
-using LoggerService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -27,10 +26,7 @@ namespace __WEB_API__TemplateResult_WebApi
             {
             });
         }
-        public static void ConfigureLoggerService(this IServiceCollection services)
-        {
-            services.AddSingleton<ILoggerManager, LoggerManager>();
-        }        
+        
         public static void ConfigureSqlServerContext(this IServiceCollection services)
         {
             services.AddDbContext<TemplateProjectDbContext>(

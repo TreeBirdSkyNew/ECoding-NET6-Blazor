@@ -13,7 +13,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddDbContext<TemplateProjectDbContext>(
-                    item => item.UseSqlServer("Server=DESKTOP-2TG0VPH\\SQLEXPRESS; Database=ELearning; Integrated Security=true;"));
+item => item.UseSqlServer("Server=DESKTOP-2TG0VPH\\SQLEXPRESS; Database=ELearning; Integrated Security=true;"));
 
 builder.Services.AddScoped<IApiClientService, ApiClientService>();
 builder.Services.AddScoped<ITemplateSolutionApiClient, TemplateSolutionApiClient>();
